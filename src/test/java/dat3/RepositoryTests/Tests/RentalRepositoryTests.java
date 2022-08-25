@@ -7,12 +7,15 @@ import dat3.carsrus.entity.Rental;
 import dat3.carsrus.repository.CarRepository;
 import dat3.carsrus.repository.MemberRepository;
 import dat3.carsrus.repository.RentalRepository;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DataJpaTest
 public class RentalRepositoryTests implements Repository {
 
     @Autowired
@@ -23,6 +26,17 @@ public class RentalRepositoryTests implements Repository {
 
     @Autowired
     RentalRepository rentalRepository;
+
+    @Override
+    @Test
+    public void runTests() {
+        prepareTestData();
+        testCreate();
+        testRead();
+        testUpdate();
+        testDelete();
+        testMethods();
+    }
 
     @Override
     public void prepareTestData() {

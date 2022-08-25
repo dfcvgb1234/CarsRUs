@@ -6,19 +6,26 @@ import dat3.carsrus.repository.MemberRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.util.Assert;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DataJpaTest
 public class MemberRepositoryTests implements Repository {
 
     @Autowired
     MemberRepository memberRepository;
 
-    public void testFindByFirstAndLastname() {
-
-        int foundMembersCount = memberRepository.findByFirstNameAndLastName("abcdef", "ghijkl").size();
-        assertEquals(1, foundMembersCount);
+    @Override
+    @Test
+    public void runTests() {
+        prepareTestData();
+        testCreate();
+        testRead();
+        testUpdate();
+        testDelete();
+        testMethods();
     }
 
     @Override
@@ -63,11 +70,11 @@ public class MemberRepositoryTests implements Repository {
     public void testDelete() {
         memberRepository.deleteById("anotherUser");
 
-        assertFalse(memberRepository.findById("newUsername").isPresent());
+        assertFalse(memberRepository.findById("anotherUser").isPresent());
     }
 
     @Override
     public void testMethods() {
-        testFindByFirstAndLastname();
+
     }
 }
