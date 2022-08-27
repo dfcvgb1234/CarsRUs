@@ -9,6 +9,7 @@ import dat3.carsrus.repository.MemberRepository;
 import dat3.carsrus.repository.ReservationRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -17,6 +18,7 @@ import java.time.temporal.TemporalUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DataJpaTest
 public class ReservationRepositoryTests implements Repository {
 
     @Autowired

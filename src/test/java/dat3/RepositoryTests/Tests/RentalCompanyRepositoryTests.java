@@ -71,7 +71,7 @@ public class RentalCompanyRepositoryTests implements Repository {
 
     @Override
     public void testMethods() {
-        int foundCompanyAmount = rentalCompanyRepository.findByName("name1").size();
+        int foundCompanyAmount = rentalCompanyRepository.findByName("name3").size();
         assertEquals(1, foundCompanyAmount);
     }
 }
