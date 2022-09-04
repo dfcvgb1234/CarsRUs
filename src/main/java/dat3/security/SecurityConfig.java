@@ -45,7 +45,7 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
             //.cors().and()
-            .csrf((csrf) -> csrf.ignoringAntMatchers("/api/auth/login").ignoringAntMatchers("/v1/members"))
+            .csrf((csrf) -> csrf.ignoringAntMatchers("/api/auth/login", "/v1/members"))
             .httpBasic(Customizer.withDefaults())
             //.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
             .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
