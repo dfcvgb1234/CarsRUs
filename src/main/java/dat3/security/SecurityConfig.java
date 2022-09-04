@@ -32,7 +32,6 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 @EnableWebSecurity
-
 @Configuration
 public class SecurityConfig {
 
@@ -46,7 +45,7 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
             //.cors().and()
-            .csrf((csrf) -> csrf.ignoringAntMatchers("/api/auth/login"))
+            .csrf((csrf) -> csrf.ignoringAntMatchers("/api/auth/login").ignoringAntMatchers("/v1/members"))
             .httpBasic(Customizer.withDefaults())
             //.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
             .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -61,6 +60,7 @@ public class SecurityConfig {
 
     http.authorizeHttpRequests((authorize) -> authorize
             .antMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+            .antMatchers(HttpMethod.POST, "/v1/members").permitAll()
             .antMatchers("/v1/cars").authenticated()
             .antMatchers(HttpMethod.GET, "/v1/members").authenticated()
             //.antMatchers("/", "/**").permitAll()
