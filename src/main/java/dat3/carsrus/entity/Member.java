@@ -41,4 +41,13 @@ public class Member extends UserWithRoles {
         this.approved = approved;
         this.ranking = ranking;
     }
+
+    public Member(String username, String password, String email, String firstName, String lastName, String street, String city, int zipCode) {
+        super(username, password, email);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.street = street;
+        this.city = city;
+        this.zipCode = zipCode;
+    }
 }

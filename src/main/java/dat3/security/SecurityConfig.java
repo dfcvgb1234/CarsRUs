@@ -32,7 +32,6 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)//,jsr250Enabled = true)
 
 @Configuration
 public class SecurityConfig {
@@ -62,6 +61,8 @@ public class SecurityConfig {
 
     http.authorizeHttpRequests((authorize) -> authorize
             .antMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+            .antMatchers("/v1/cars").authenticated()
+            .antMatchers(HttpMethod.GET, "/v1/members").authenticated()
             //.antMatchers("/", "/**").permitAll()
             .antMatchers("/error").permitAll());
 //                .antMatchers(HttpMethod.GET, "/api/demouser/user-only").hasAuthority("USER")
